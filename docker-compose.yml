@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.8.0-32eb4531-SNAPSHOT
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.9.2
     ports:
       - 9200:9200
     healthcheck:
@@ -33,7 +33,7 @@ services:
     build:
       context: logstash/
       args:
-        ELASTIC_VERSION: 8.8.0-32eb4531-SNAPSHOT
+        ELASTIC_VERSION: 8.9.2
     volumes:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro,Z
       - ./logstash/pipeline:/usr/share/logstash/pipeline:ro,Z
@@ -50,7 +50,7 @@ services:
     restart: unless-stopped
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:8.8.0-32eb4531-SNAPSHOT
+    image: docker.elastic.co/kibana/kibana:8.9.2
     ports:
       - 5601:5601
     healthcheck:
@@ -69,7 +69,7 @@ services:
       - "./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml"
 
   fleet-server:
-    image: docker.elastic.co/beats/elastic-agent:8.8.0-32eb4531-SNAPSHOT
+    image: docker.elastic.co/beats/elastic-agent:8.9.2
     ports:
       - 8220:8220
     healthcheck:
@@ -97,7 +97,7 @@ services:
       - "./fleet-server/key.pem:/etc/pki/tls/private/fleet-server-key.pem"
 
   apm-server:
-    image: docker.elastic.co/apm/apm-server:8.8.0-32eb4531-SNAPSHOT
+    image: docker.elastic.co/apm/apm-server:8.9.2
     ports:
       - "8200:8200"
     volumes:
